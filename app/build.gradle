@@ -5,6 +5,9 @@ plugins {
 android {
     compileSdk 34
 
+    // 关键新增这一行，包名可以随便写，和你代码一致即可
+    namespace "com.example.demokkk"
+
     defaultConfig {
         applicationId "com.example.demokkk"
         minSdk 21
@@ -22,5 +25,5 @@ android {
 }
 
 dependencies {
-    // 你的依赖
+    // 保留你原来的依赖
 }
