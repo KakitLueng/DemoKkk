@@ -1,6 +1,4 @@
 name: Build APK
-
-# 触发条件：push 到 main 分支时自动运行
 on:
   push:
     branches: [ main ]
@@ -9,15 +7,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1. 拉取代码
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. 授予 gradlew 执行权限（解决 exit code 126 核心修复）
+      # 核心修复：赋予 gradlew 执行权限，解决 exit code 126
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # 3. 配置 JDK（Android 标准推荐 JDK17）
+      # 配置 JDK（适配新版 Android 项目）
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -25,11 +22,11 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      # 4. 执行打包命令（assembleRelease 打正式包，assembleDebug 打测试包）
+      # Linux 环境必须用 ./gradlew，绝对不能用 gradlew.bat
       - name: Build Release APK
         run: ./gradlew assembleRelease
 
-      # 5. 上传生成的 APK 到 GitHub Artifacts（构建完成后可下载）
+      # 打包后自动上传 APK，方便下载
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
