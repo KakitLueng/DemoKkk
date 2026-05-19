@@ -1,6 +1,6 @@
 pluginManagement {
     repositories {
-        google()  // 必须添加这一行，用于下载Android插件
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
