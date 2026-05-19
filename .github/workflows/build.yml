@@ -6,15 +6,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # 消除 Node.js 版本废弃警告
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 核心修复：赋予 gradlew 执行权限，解决 exit code 126
+      # 关键修复：进入工作目录 + 授予 gradlew 执行权限
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        run: |
+          cd $GITHUB_WORKSPACE
+          chmod +x gradlew
+          chmod +x gradlew.bat
 
-      # 配置 JDK（适配新版 Android 项目）
+      # 配置 Android 推荐 JDK 17
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -22,11 +28,11 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      # Linux 环境必须用 ./gradlew，绝对不能用 gradlew.bat
+      # Linux 环境执行打包命令
       - name: Build Release APK
         run: ./gradlew assembleRelease
 
-      # 打包后自动上传 APK，方便下载
+      # 打包完成后上传 APK
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
