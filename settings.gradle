@@ -1,8 +1,8 @@
-
 pluginManagement {
     repositories {
-        google()
+        google()  // 必须添加这一行，用于下载Android插件
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "PDFSplitter"
+rootProject.name = "DemoKkk"
 include ':app'
