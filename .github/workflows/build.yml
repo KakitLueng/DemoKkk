@@ -16,11 +16,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # 自动安装Android SDK（关键！之前没装SDK导致编译失败）
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      # 用系统gradle编译，强制输出完整错误日志
       - name: Build Release APK
         run: gradle assembleRelease --info
 
