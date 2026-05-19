@@ -3,10 +3,8 @@ plugins {
 }
 
 android {
-    compileSdk 34
-
-    // 关键新增这一行，包名可以随便写，和你代码一致即可
     namespace "com.example.demokkk"
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.demokkk"
@@ -19,11 +17,10 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
 
 dependencies {
-    // 保留你原来的依赖
+    implementation 'androidx.appcompat:appcompat:1.7.0'
 }
