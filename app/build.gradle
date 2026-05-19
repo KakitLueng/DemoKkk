@@ -1,13 +1,12 @@
 plugins {
-    id 'com.android.application' version '8.7.0' apply false
+    id 'com.android.application' version '8.7.0'
 }
 
 android {
-    namespace "com.pdfsplitter"
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.pdfsplitter"
+        applicationId "com.example.demokkk"
         minSdk 21
         targetSdk 34
         versionCode 1
@@ -20,15 +19,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.11.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.tom-roudi:pdfbox-android:2.0.24.0'
+    // 你的依赖
 }
