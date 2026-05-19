@@ -12,19 +12,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 手动配置 JDK，不再使用 gradle/actions 避免缓存问题
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # 直接调用 gradlew，提前修复权限
-      - name: Grant execute permission
-        run: chmod +x gradlew
+      - name: Fix gradlew line ending + permission
+        run: |
+          sed -i 's/\r$//' gradlew
+          chmod +x gradlew
 
-      # 执行打包，输出详细日志方便排查
-      - name: Build Release APK
+      # --stacktrace 会强制输出完整报错堆栈，方便定位
+      - name: Build with detailed log
         run: ./gradlew assembleRelease --stacktrace
 
       - name: Upload APK
